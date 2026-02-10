@@ -61,7 +61,18 @@ def bfhl():
 def health():
     return jsonify(is_success=True, official_email=EMAIL)
 
-@app.route("/bfhl", methods=["POST"]) def bfhl(): data = request.json.get("data", []) numbers = [x for x in data if x.isdigit()] alphabets = [x for x in data if x.isalpha()] return jsonify({ "is_success": True, "numbers": numbers, "alphabets": alphabets }), 200
+@app.route("/bfhl", methods=["POST"])
+def bfhl():
+    data = request.json.get("data", [])
+
+    numbers = [x for x in data if x.isdigit()]
+    alphabets = [x for x in data if x.isalpha()]
+
+    return jsonify({
+        "is_success": True,
+        "numbers": numbers,
+        "alphabets": alphabets
+    }), 200
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
